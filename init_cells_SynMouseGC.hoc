@@ -1,0 +1,55 @@
+
+
+// ***** Load cell morphology templates and create artificial cells *****
+io = load_file("morphos/cell_mouse_matGC_art_01.hoc")
+cell = new cell_mouse_matGC_art_01()
+io = cellList.append(cell)
+
+	io = load_file("morphos/cell_mouse_matGC_art_02.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_03.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_04.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_05.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_06.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_07.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_08.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_09.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_10.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_11.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_12.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_13.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_14.hoc")
+	io = load_file("morphos/cell_mouse_matGC_art_15.hoc")
+if (!singlemorph) {
+	cell = new cell_mouse_matGC_art_02()
+	io = cellList.append(cell)
+	cell = new cell_mouse_matGC_art_03()
+	io = cellList.append(cell)
+	cell = new cell_mouse_matGC_art_04()
+	io = cellList.append(cell)
+	cell = new cell_mouse_matGC_art_05()
+	io = cellList.append(cell)
+	cell = new cell_mouse_matGC_art_06()
+	io = cellList.append(cell)
+	cell = new cell_mouse_matGC_art_07()
+	io = cellList.append(cell)
+	cell = new cell_mouse_matGC_art_08()
+	io = cellList.append(cell)
+	cell = new cell_mouse_matGC_art_09()
+	io = cellList.append(cell)
+	cell = new cell_mouse_matGC_art_10()
+	io = cellList.append(cell)
+	cell = new cell_mouse_matGC_art_11()
+	io = cellList.append(cell)
+	cell = new cell_mouse_matGC_art_12()
+	io = cellList.append(cell)
+	cell = new cell_mouse_matGC_art_13()
+	io = cellList.append(cell)
+	cell = new cell_mouse_matGC_art_14()
+	io = cellList.append(cell)
+	
+	cell = new cell_mouse_matGC_art_15()
+	io = cellList.append(cell)
+}
+objref cell
+
+

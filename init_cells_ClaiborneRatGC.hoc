@@ -1,0 +1,48 @@
+
+
+// ***** Load cell morphology templates and create artificial cells *****
+io = load_file("morphos/cell_rat_mGC_Claiborne_01.hoc")
+cell = new cell_rat_mGC_Claiborne_01()
+io = cellList.append(cell)
+io = load_file("morphos/cell_rat_mGC_Claiborne_02.hoc")
+io = load_file("morphos/cell_rat_mGC_Claiborne_03.hoc")
+io = load_file("morphos/cell_rat_mGC_Claiborne_04.hoc")
+io = load_file("morphos/cell_rat_mGC_Claiborne_05.hoc")
+io = load_file("morphos/cell_rat_mGC_Claiborne_06.hoc")
+io = load_file("morphos/cell_rat_mGC_Claiborne_07.hoc")
+io = load_file("morphos/cell_rat_mGC_Claiborne_08.hoc")
+io = load_file("morphos/cell_rat_mGC_Claiborne_09.hoc")
+io = load_file("morphos/cell_rat_mGC_Claiborne_10.hoc")
+io = load_file("morphos/cell_rat_mGC_Claiborne_11.hoc")
+io = load_file("morphos/cell_rat_mGC_Claiborne_12.hoc")
+io = load_file("morphos/cell_rat_mGC_Claiborne_13.hoc")
+if (!singlemorph) {
+	
+	cell = new cell_rat_mGC_Claiborne_02()
+	io = cellList.append(cell)
+	cell = new cell_rat_mGC_Claiborne_03()
+	io = cellList.append(cell)
+	cell = new cell_rat_mGC_Claiborne_04()
+	io = cellList.append(cell)
+	cell = new cell_rat_mGC_Claiborne_05()
+	io = cellList.append(cell)
+	cell = new cell_rat_mGC_Claiborne_06()
+	io = cellList.append(cell)
+	cell = new cell_rat_mGC_Claiborne_07()
+	io = cellList.append(cell)
+	cell = new cell_rat_mGC_Claiborne_08()
+	io = cellList.append(cell)
+	cell = new cell_rat_mGC_Claiborne_09()
+	io = cellList.append(cell)
+	cell = new cell_rat_mGC_Claiborne_10()
+	io = cellList.append(cell)
+	cell = new cell_rat_mGC_Claiborne_11()
+	io = cellList.append(cell)
+	cell = new cell_rat_mGC_Claiborne_12()
+	io = cellList.append(cell)
+	cell = new cell_rat_mGC_Claiborne_13()
+	io = cellList.append(cell)
+}
+objref cell
+
+

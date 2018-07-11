@@ -1,0 +1,534 @@
+
+
+// ***** Insert mechanisms *****
+for CELLINDEX = 0,cellList.count-1 {
+	hasGCL = 0
+	forsec cellList.o(CELLINDEX).allreg {
+	insert Cabuffer
+	brat_Cabuffer = 50
+	tau_Cabuffer = 240
+	depth_Cabuffer = 0.05
+	insert k_ion
+	ek = -93
+	insert na_ion
+	ena = 87.76
+	insert ca_ion
+	cao0_ca_ion = 2
+	cai0_ca_ion = 4.8e-05
+	if (issection(".*GCL.*")) {
+		hasGCL = 1
+		}
+	}
+	
+	if (hasGCL) {
+		forsec cellList.o(CELLINDEX).regGCL {
+		insert pas
+		cm = 0.9
+		Ra = 200
+		g_pas = 1.38462e-05
+		e_pas = -70
+		insert Kir21
+		gkbar_Kir21 = 3.82215e-05
+		mg_i_Kir21 = 4
+		spm_i_Kir21 = 1
+		gsub_Kir21 = 0.25
+		fac_Kir21 = 0.005
+		vshiftbs_Kir21 = 0
+		vshiftbb_Kir21 = 0
+		b_Kir21 = 0.105
+		shiftmg_Kir21 = 0.5
+		cas_Kir21 = 0.142857
+		As_Kir21 = 0.2
+		insert Kv42
+		gkbar_Kv42 = 0.0010875
+		a0_Kv42 = 0.416
+		za_Kv42 = 1.1
+		b0_Kv42 = 0.0486
+		zb_Kv42 = -1.556
+		kco0_Kv42 = 0.347
+		zco_Kv42 = 0
+		koc0_Kv42 = 1.67
+		zoc_Kv42 = 0
+		kci_Kv42 = 0.04873
+		kic_Kv42 = 0.000537
+		koi_Kv42 = 0.0669
+		kio_Kv42 = 0.04246
+		vshift_Kv42 = -20
+		insert Cav22
+		gbar_Cav22 = 5e-05
+		insert Cav12
+		gbar_Cav12 = 1e-05
+		kf_Cav12 = 0.0005
+		insert Cav13
+		gbar_Cav13 = 2e-06
+		insert Cav32
+		gbar_Cav32 = 2.2e-05
+		insert SK2
+		gkbar_SK2 = 1.66667e-06
+		diff_SK2 = 3
+		Q10_SK2 = 5
+		fac_SK2 = 2.5
+		diro2_SK2 = 0.1
+		invc3_SK2 = 0.09
+		invc1_SK2 = 0.32
+		invc2_SK2 = 0.32
+		dirc4_SK2 = 320
+		insert Cabuffer
+		brat_Cabuffer = 50
+		tau_Cabuffer = 240
+		depth_Cabuffer = 0.05
+		}
+	}
+	
+	forsec cellList.o(CELLINDEX).regadendIML {
+	insert pas
+	cm = 1.0215
+	Ra = 200
+	g_pas = 1.57153e-05
+	e_pas = -70
+	insert Kir21
+	gkbar_Kir21 = 3.82215e-05
+	mg_i_Kir21 = 4
+	spm_i_Kir21 = 1
+	gsub_Kir21 = 0.25
+	fac_Kir21 = 0.005
+	vshiftbs_Kir21 = 0
+	vshiftbb_Kir21 = 0
+	b_Kir21 = 0.105
+	shiftmg_Kir21 = 0.5
+	cas_Kir21 = 0.142857
+	As_Kir21 = 0.2
+	insert HCN
+	cAMP_HCN = 0
+	e_HCN = -41.9
+	gbar_HCN = 4e-06
+	vhalfl_HCN = -100
+	kl_HCN = 8
+	vhalft_HCN = 30.4
+	at_HCN = 0.00052
+	bt_HCN = 0.2151
+	insert Kv42
+	gkbar_Kv42 = 0.002175
+	a0_Kv42 = 0.416
+	za_Kv42 = 1.1
+	b0_Kv42 = 0.0486
+	zb_Kv42 = -1.556
+	kco0_Kv42 = 0.347
+	zco_Kv42 = 0
+	koc0_Kv42 = 1.67
+	zoc_Kv42 = 0
+	kci_Kv42 = 0.04873
+	kic_Kv42 = 0.000537
+	koi_Kv42 = 0.0669
+	kio_Kv42 = 0.04246
+	vshift_Kv42 = -20
+	insert Cav22
+	gbar_Cav22 = 5e-05
+	hTau_Cav22 = 80
+	insert Cav12
+	gbar_Cav12 = 4e-05
+	kf_Cav12 = 0.0005
+	insert Cav13
+	gbar_Cav13 = 4e-06
+	kf_Cav13 = 0.0005
+	insert Cav32
+	gbar_Cav32 = 2.2e-05
+	insert SK2
+	gkbar_SK2 = 4.375e-06
+	diff_SK2 = 3
+	Q10_SK2 = 5
+	fac_SK2 = 2.5
+	diro2_SK2 = 0.1
+	invc3_SK2 = 0.09
+	invc1_SK2 = 0.32
+	invc2_SK2 = 0.32
+	dirc4_SK2 = 320
+	insert Cabuffer
+	brat_Cabuffer = 50
+	tau_Cabuffer = 240
+	depth_Cabuffer = 0.05
+	}
+
+	forsec cellList.o(CELLINDEX).regadendMML {
+	insert pas
+	cm = 1.143
+	Ra = 200
+	g_pas = 1.75846e-05
+	e_pas = -70
+	insert Kir21
+	gkbar_Kir21 = 3.82215e-05
+	mg_i_Kir21 = 4
+	spm_i_Kir21 = 1
+	gsub_Kir21 = 0.25
+	fac_Kir21 = 0.005
+	vshiftbs_Kir21 = 0
+	vshiftbb_Kir21 = 0
+	b_Kir21 = 0.105
+	shiftmg_Kir21 = 0.5
+	cas_Kir21 = 0.142857
+	As_Kir21 = 0.2
+	insert HCN
+	cAMP_HCN = 0
+	e_HCN = -41.9
+	gbar_HCN = 4e-06
+	vhalfl_HCN = -100
+	kl_HCN = 8
+	vhalft_HCN = 30.4
+	at_HCN = 0.00052
+	bt_HCN = 0.2151
+	insert Kv42
+	gkbar_Kv42 = 0.002175
+	a0_Kv42 = 0.416
+	za_Kv42 = 1.1
+	b0_Kv42 = 0.0486
+	zb_Kv42 = -1.556
+	kco0_Kv42 = 0.347
+	zco_Kv42 = 0
+	koc0_Kv42 = 1.67
+	zoc_Kv42 = 0
+	kci_Kv42 = 0.04873
+	kic_Kv42 = 0.000537
+	koi_Kv42 = 0.0669
+	kio_Kv42 = 0.04246
+	vshift_Kv42 = -20
+	insert Cav22
+	gbar_Cav22 = 5e-05
+	hTau_Cav22 = 80
+	insert Cav12
+	gbar_Cav12 = 4e-05
+	kf_Cav12 = 0.0005
+	insert Cav13
+	gbar_Cav13 = 4e-06
+	kf_Cav13 = 0.0005
+	insert Cav32
+	gbar_Cav32 = 2.2e-05
+	insert SK2
+	gkbar_SK2 = 4.375e-06
+	diff_SK2 = 3
+	Q10_SK2 = 5
+	fac_SK2 = 2.5
+	diro2_SK2 = 0.1
+	invc3_SK2 = 0.09
+	invc1_SK2 = 0.32
+	invc2_SK2 = 0.32
+	dirc4_SK2 = 320
+	insert Cabuffer
+	brat_Cabuffer = 50
+	tau_Cabuffer = 240
+	depth_Cabuffer = 0.05
+	}
+
+	forsec cellList.o(CELLINDEX).regadendOML {
+	insert pas
+	cm = 1.143
+	Ra = 200
+	g_pas = 1.75846e-05
+	e_pas = -70
+	insert Kir21
+	gkbar_Kir21 = 3.82215e-05
+	mg_i_Kir21 = 4
+	spm_i_Kir21 = 1
+	gsub_Kir21 = 0.25
+	fac_Kir21 = 0.005
+	vshiftbs_Kir21 = 0
+	vshiftbb_Kir21 = 0
+	b_Kir21 = 0.105
+	shiftmg_Kir21 = 0.5
+	cas_Kir21 = 0.142857
+	As_Kir21 = 0.2
+	insert HCN
+	cAMP_HCN = 0
+	e_HCN = -41.9
+	gbar_HCN = 4e-06
+	vhalfl_HCN = -100
+	kl_HCN = 8
+	vhalft_HCN = 30.4
+	at_HCN = 0.00052
+	bt_HCN = 0.2151
+	insert Kv42
+	gkbar_Kv42 = 0.002175
+	a0_Kv42 = 0.416
+	za_Kv42 = 1.1
+	b0_Kv42 = 0.0486
+	zb_Kv42 = -1.556
+	kco0_Kv42 = 0.347
+	zco_Kv42 = 0
+	koc0_Kv42 = 1.67
+	zoc_Kv42 = 0
+	kci_Kv42 = 0.04873
+	kic_Kv42 = 0.000537
+	koi_Kv42 = 0.0669
+	kio_Kv42 = 0.04246
+	vshift_Kv42 = -20
+	insert Cav22
+	gbar_Cav22 = 5e-05
+	hTau_Cav22 = 80
+	insert Cav12
+	gbar_Cav12 = 4e-05
+	kf_Cav12 = 0.0005
+	insert Cav13
+	gbar_Cav13 = 4e-06
+	kf_Cav13 = 0.0005
+	insert Cav32
+	gbar_Cav32 = 2.2e-05
+	insert SK2
+	gkbar_SK2 = 4.375e-06
+	diff_SK2 = 3
+	Q10_SK2 = 5
+	fac_SK2 = 2.5
+	diro2_SK2 = 0.1
+	invc3_SK2 = 0.09
+	invc1_SK2 = 0.32
+	invc2_SK2 = 0.32
+	dirc4_SK2 = 320
+	insert Cabuffer
+	brat_Cabuffer = 50
+	tau_Cabuffer = 240
+	depth_Cabuffer = 0.05
+	}
+
+	forsec cellList.o(CELLINDEX).regaxon {
+	insert pas
+	cm = 0.9
+	Ra = 100
+	g_pas = 6.59341e-06
+	e_pas = -70
+	insert Kir21
+	gkbar_Kir21 = 1.82007e-05
+	mg_i_Kir21 = 4
+	spm_i_Kir21 = 1
+	gsub_Kir21 = 0.25
+	fac_Kir21 = 0.005
+	vshiftbs_Kir21 = 0
+	vshiftbb_Kir21 = 0
+	b_Kir21 = 0.105
+	shiftmg_Kir21 = 0.5
+	cas_Kir21 = 0.142857
+	As_Kir21 = 0.2
+	insert na8st
+	vShift_na8st = 22
+	vShift_inact_na8st = 0
+	a1_0_na8st = 62.6477
+	a1_1_na8st = 0.0116055
+	b1_0_na8st = 0.00193691
+	b1_1_na8st = 0.137719
+	a2_0_na8st = 34.7828
+	a2_1_na8st = 0.0299559
+	b2_0_na8st = 0.0957515
+	b2_1_na8st = 0.0928114
+	a3_0_na8st = 76.6983
+	a3_1_na8st = 0.0537432
+	b3_0_na8st = 1.24879
+	b3_1_na8st = 0.0311504
+	bh_0_na8st = 2.9807
+	bh_1_na8st = 0.4679
+	bh_2_na8st = 0.0596
+	ah_0_na8st = 0.3962
+	ah_1_na8st = 2982.1
+	ah_2_na8st = 0.0635
+	gbar_na8st = 0.066096
+	insert Kv11
+	gkbar_Kv11 = 0.00025
+	vshift_Kv11 = 0
+	insert Kv14
+	gkbar_Kv14 = 0.001
+	vshift_Kv14 = 0
+	insert Kv34
+	gkbar_Kv34 = 0.00765625
+	scale_a_Kv34 = 4
+	ksl_Kv34 = 0.5
+	insert Kv723
+	gkbar_Kv723 = 0.00067
+	Dtaumult1_Kv723 = 6
+	Dtaumult2_Kv723 = 6
+	tau0mult_Kv723 = 0.2
+	insert Cabuffer
+	brat_Cabuffer = 10
+	tau_Cabuffer = 43
+	insert Cav22
+	gbar_Cav22 = 5e-05
+	hTau_Cav22 = 80
+	insert Cav13
+	gbar_Cav13 = 2e-06
+	kf_Cav13 = 0.0005
+	insert Cav32
+	gbar_Cav32 = 8e-06
+	insert BK
+	gabkbar_BK = 0
+	gakbar_BK = 0.03744
+	diff_BK = 100000
+	base_BK = 4
+	insert SK2
+	gkbar_SK2 = 1.25e-05
+	diff_SK2 = 3
+	Q10_SK2 = 5
+	fac_SK2 = 2.5
+	diro2_SK2 = 0.1
+	invc3_SK2 = 0.09
+	invc1_SK2 = 0.32
+	invc2_SK2 = 0.32
+	dirc4_SK2 = 320
+	}
+
+	forsec cellList.o(CELLINDEX).regaxonh {
+	insert pas
+	cm = 0.9
+	Ra = 200
+	g_pas = 6.59341e-06
+	e_pas = -70
+	insert Kir21
+	gkbar_Kir21 = 1.82007e-05
+	mg_i_Kir21 = 4
+	spm_i_Kir21 = 1
+	gsub_Kir21 = 0.25
+	fac_Kir21 = 0.005
+	vshiftbs_Kir21 = 0
+	vshiftbb_Kir21 = 0
+	b_Kir21 = 0.105
+	shiftmg_Kir21 = 0.5
+	cas_Kir21 = 0.142857
+	As_Kir21 = 0.2
+	insert na8st
+	vShift_na8st = 22
+	vShift_inact_na8st = 0
+	a1_0_na8st = 62.6477
+	a1_1_na8st = 0.0116055
+	b1_0_na8st = 0.00193691
+	b1_1_na8st = 0.137719
+	a2_0_na8st = 34.7828
+	a2_1_na8st = 0.0299559
+	b2_0_na8st = 0.0957515
+	b2_1_na8st = 0.0928114
+	a3_0_na8st = 76.6983
+	a3_1_na8st = 0.0537432
+	b3_0_na8st = 1.24879
+	b3_1_na8st = 0.0311504
+	bh_0_na8st = 2.9807
+	bh_1_na8st = 0.4679
+	bh_2_na8st = 0.0596
+	ah_0_na8st = 0.3962
+	ah_1_na8st = 2982.1
+	ah_2_na8st = 0.0635
+	gbar_na8st = 0.3888
+	insert Kv11
+	gkbar_Kv11 = 0.00025
+	vshift_Kv11 = 0
+	insert Kv14
+	gkbar_Kv14 = 0.001
+	vshift_Kv14 = 0
+	insert Kv34
+	gkbar_Kv34 = 0.0307813
+	scale_a_Kv34 = 4
+	ksl_Kv34 = 0.5
+	insert Kv723
+	gkbar_Kv723 = 0.00335
+	Dtaumult1_Kv723 = 6
+	Dtaumult2_Kv723 = 6
+	tau0mult_Kv723 = 0.2
+	insert Cav22
+	gbar_Cav22 = 5e-05
+	hTau_Cav22 = 80
+	insert Cav12
+	gbar_Cav12 = 1e-05
+	kf_Cav12 = 0.0005
+	insert Cav13
+	gbar_Cav13 = 4e-06
+	kf_Cav13 = 0.0005
+	insert Cav32
+	gbar_Cav32 = 8e-06
+	insert BK
+	gabkbar_BK = 0
+	gakbar_BK = 0.03744
+	diff_BK = 100000
+	base_BK = 4
+	insert SK2
+	gkbar_SK2 = 8.33333e-05
+	diff_SK2 = 3
+	Q10_SK2 = 5
+	fac_SK2 = 2.5
+	diro2_SK2 = 0.1
+	invc3_SK2 = 0.09
+	invc1_SK2 = 0.32
+	invc2_SK2 = 0.32
+	dirc4_SK2 = 320
+	insert Cabuffer
+	brat_Cabuffer = 50
+	tau_Cabuffer = 240
+	depth_Cabuffer = 0.05
+	}
+
+	forsec cellList.o(CELLINDEX).regsoma {
+insert pas
+cm = 0.9
+Ra = 200
+g_pas = 1.38462e-05
+e_pas = -70
+insert Kir21
+gkbar_Kir21 = 3.82215e-05
+mg_i_Kir21 = 4
+spm_i_Kir21 = 1
+gsub_Kir21 = 0.25
+fac_Kir21 = 0.005
+vshiftbs_Kir21 = 0
+vshiftbb_Kir21 = 0
+b_Kir21 = 0.105
+shiftmg_Kir21 = 0.5
+cas_Kir21 = 0.142857
+As_Kir21 = 0.2
+insert na8st
+vShift_na8st = 22
+vShift_inact_na8st = 0
+a1_0_na8st = 45.8498
+a1_1_na8st = 0.0239354
+b1_0_na8st = 0.0144095
+b1_1_na8st = 0.0884761
+a2_0_na8st = 19.8084
+a2_1_na8st = 0.0221771
+b2_0_na8st = 0.565017
+b2_1_na8st = 0.061084
+a3_0_na8st = 71.8119
+a3_1_na8st = 0.0659379
+b3_0_na8st = 0.753118
+b3_1_na8st = 0.0364798
+bh_0_na8st = 2.9713
+bh_1_na8st = 0.6443
+bh_2_na8st = 0.0594
+ah_0_na8st = 1.586
+ah_1_na8st = 2306.7
+ah_2_na8st = 0.0493
+gbar_na8st = 0.066096
+insert Kv21
+gkbar_Kv21 = 0.00354545
+insert Cabuffer
+brat_Cabuffer = 200
+tau_Cabuffer = 240
+insert Cav22
+gbar_Cav22 = 0.0003
+hTau_Cav22 = 80
+insert Cav12
+gbar_Cav12 = 2e-05
+kf_Cav12 = 0.0005
+insert Cav13
+gbar_Cav13 = 8e-06
+kf_Cav13 = 0.0005
+insert Cav32
+gbar_Cav32 = 2.2e-05
+insert BK
+gabkbar_BK = 0
+gakbar_BK = 0.00936
+diff_BK = 1.5
+base_BK = 4
+insert SK2
+gkbar_SK2 = 8.33333e-07
+diff_SK2 = 3
+Q10_SK2 = 5
+fac_SK2 = 2.5
+diro2_SK2 = 0.1
+invc3_SK2 = 0.09
+invc1_SK2 = 0.32
+invc2_SK2 = 0.32
+dirc4_SK2 = 320
+}
+	// ***** Now adjust number of segments *****
+	geom_nseg()
+	}

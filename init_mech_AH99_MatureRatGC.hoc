@@ -1,0 +1,152 @@
+
+
+// ***** Insert mechanisms *****
+for CELLINDEX = 0,cellList.count-1 {
+	hasGCL = 0
+	forsec cellList.o(CELLINDEX).allreg {
+	insert pas
+	e_pas = -70
+	g_pas = 2.5e-05
+	Ra = 210
+	cm = 1
+	insert k_ion
+	ek = -85
+	insert na_ion
+	ena = 45
+	insert ca_ion
+	cao0_ca_ion = 2
+	cai0_ca_ion = 7e-05
+	if (issection(".*GCL.*")) {
+		hasGCL = 1
+		}
+	}
+	
+	if (hasGCL) {
+		forsec cellList.o(CELLINDEX).regGCL {
+		insert ichan3
+		gnabar_ichan3 = 0.018
+		gkfbar_ichan3 = 0.004
+		gksbar_ichan3 = 0.003
+		gkabar_ichan3 = 0
+		insert Caold
+		gtcabar_Caold = 0.0003
+		gncabar_Caold = 0.003
+		glcabar_Caold = 0.015
+		insert CadepK
+		gbkbar_CadepK = 0.0003
+		gskbar_CadepK = 0.0002
+		insert pas
+		e_pas = -70
+		g_pas = 2.5e-05
+		Ra = 210
+		cm = 1
+	}
+	}
+	forsec cellList.o(CELLINDEX).regadendIML {
+	insert pas
+	e_pas = -70
+	g_pas = 6e-05
+	Ra = 210
+	cm = 2.4
+	insert ichan3
+	gnabar_ichan3 = 0.013
+	gkfbar_ichan3 = 0.004
+	gksbar_ichan3 = 0.003
+	gkabar_ichan3 = 0
+	insert Caold
+	gtcabar_Caold = 0.001
+	gncabar_Caold = 0.001
+	glcabar_Caold = 0.015
+	insert CadepK
+	gbkbar_CadepK = 0.0005
+	gskbar_CadepK = 0.0001
+	}
+
+	forsec cellList.o(CELLINDEX).regadendMML {
+	insert pas
+	e_pas = -70
+	g_pas = 8e-05
+	Ra = 210
+	cm = 3.2
+	insert ichan3
+	gnabar_ichan3 = 0.008
+	gkfbar_ichan3 = 0.001
+	gksbar_ichan3 = 0.003
+	gkabar_ichan3 = 0
+	insert Caold
+	gtcabar_Caold = 0.002
+	gncabar_Caold = 0.001
+	glcabar_Caold = 0.001
+	insert CadepK
+	gbkbar_CadepK = 0.0012
+	gskbar_CadepK = 0
+	}
+
+	forsec cellList.o(CELLINDEX).regadendOML {
+	insert pas
+	e_pas = -70
+	g_pas = 8e-05
+	Ra = 210
+	cm = 3.2
+	insert ichan3
+	gnabar_ichan3 = 0
+	gkfbar_ichan3 = 0.001
+	gksbar_ichan3 = 0.004
+	gkabar_ichan3 = 0
+	insert Caold
+	gtcabar_Caold = 0.002
+	gncabar_Caold = 0.001
+	glcabar_Caold = 0
+	insert CadepK
+	gbkbar_CadepK = 0.0012
+	gskbar_CadepK = 0
+	}
+
+	forsec cellList.o(CELLINDEX).regaxon {
+	insert ichan3
+	gnabar_ichan3 = 0.21
+	gkfbar_ichan3 = 0.028
+	gksbar_ichan3 = 0
+	gkabar_ichan3 = 0.004
+	insert pas
+	e_pas = -70
+	g_pas = 2.5e-05
+	Ra = 210
+	cm = 1
+	}
+
+	forsec cellList.o(CELLINDEX).regaxonh {
+	insert ichan3
+	gnabar_ichan3 = 0.21
+	gkfbar_ichan3 = 0.028
+	gksbar_ichan3 = 0
+	gkabar_ichan3 = 0.004
+	insert pas
+	e_pas = -70
+	g_pas = 2.5e-05
+	Ra = 210
+	cm = 1
+	}
+
+	forsec cellList.o(CELLINDEX).regsoma {
+	insert ichan3
+	gnabar_ichan3 = 0.12
+	gkfbar_ichan3 = 0.016
+	gksbar_ichan3 = 0.003
+	gkabar_ichan3 = 0.012
+	insert Caold
+	gtcabar_Caold = 0.00015
+	gncabar_Caold = 0.002
+	glcabar_Caold = 0.01
+	insert CadepK
+	gbkbar_CadepK = 0.0003
+	gskbar_CadepK = 0.0005
+	insert pas
+	e_pas = -70
+	g_pas = 2.5e-05
+	Ra = 210
+	cm = 1
+	}
+	// ***** Define nseg for all cells *****
+	geom_nseg()
+	}

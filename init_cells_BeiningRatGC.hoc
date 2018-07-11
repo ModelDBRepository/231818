@@ -1,0 +1,26 @@
+
+
+// ***** Load cell morphology templates and create artificial cells *****
+io = load_file("morphos/cell_rat_mGC_Beining_01.hoc")
+cell = new cell_rat_mGC_Beining_01()
+io = cellList.append(cell)
+io = load_file("morphos/cell_rat_mGC_Beining_02.hoc")
+io = load_file("morphos/cell_rat_mGC_Beining_03.hoc")
+io = load_file("morphos/cell_rat_mGC_Beining_04.hoc")
+io = load_file("morphos/cell_rat_mGC_Beining_05.hoc")
+if (singlemorph == 0) { 	
+	cell = new cell_rat_mGC_Beining_02()
+	io = cellList.append(cell)
+	
+	cell = new cell_rat_mGC_Beining_03()
+	io = cellList.append(cell)
+	
+	cell = new cell_rat_mGC_Beining_04()
+	io = cellList.append(cell)
+	
+	cell = new cell_rat_mGC_Beining_05()
+	io = cellList.append(cell)
+}
+objref cell
+
+

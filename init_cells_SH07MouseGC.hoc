@@ -1,0 +1,33 @@
+
+
+// ***** Load cell morphology templates and create artificial cells *****
+io = load_file("morphos/cell_SH07all2_01.hoc")
+cell = new cell_SH07all2_01()
+io = cellList.append(cell)
+io = load_file("morphos/cell_SH07all2_02.hoc")
+io = load_file("morphos/cell_SH07all2_03.hoc")
+io = load_file("morphos/cell_SH07all2_04.hoc")
+io = load_file("morphos/cell_SH07all2_05.hoc")
+io = load_file("morphos/cell_SH07all2_06.hoc")
+io = load_file("morphos/cell_SH07all2_07.hoc")
+io = load_file("morphos/cell_SH07all2_08.hoc")
+
+if (!singlemorph) {
+	cell = new cell_SH07all2_02()
+	io = cellList.append(cell)
+	cell = new cell_SH07all2_03()
+	io = cellList.append(cell)
+	cell = new cell_SH07all2_04()
+	io = cellList.append(cell)
+	cell = new cell_SH07all2_05()
+	io = cellList.append(cell)
+	cell = new cell_SH07all2_06()
+	io = cellList.append(cell)
+	cell = new cell_SH07all2_07()
+	io = cellList.append(cell)
+	cell = new cell_SH07all2_08()
+	io = cellList.append(cell)
+}
+objref cell
+
+

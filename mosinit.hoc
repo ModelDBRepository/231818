@@ -1,0 +1,217 @@
+/*
+	GC model environment for NEURON, accompanying the e-Life publication Beining et al (2017): "XXXXXXXXXXXXXXXX"
+	This script is to provide some functionalities of the model directly in NEURON without the need of Matlab and TREES toolbox.
+
+	Please cite as
+	XXXXXXXXXXXXXXXXXXXXXXXX
+	
+	Bug reports to
+	marcel.beining@gmail.com
+*/
+
+// ***** Initialize Variables *****
+strdef tmpstr, tmpstr2, caname // temporary string object
+objref f, g
+objref nil,cvode,strf,tvec,cell,cellList,pp,ppList,con,conList,nilcon,nilconList,playt,playtList,play,playList,thissec,thisseg,thisval,maxRa,maxcm 
+ cellList = new List() // comprises all instances of cell templates, also artificial cells
+ ppList = new List() // comprises all Point Processes of any cell
+ conList = new List() // comprises all NetCon objects
+ playtList = new List() //comprises all time vectors for play objects
+ playList = new List() //comprises all vectors played into an object
+ nilconList = new List() //comprises all NULL object NetCons
+ cvode = new CVode() //the Cvode object
+ thissec = new Vector() //for reading range variables
+ thisseg = new Vector() //for reading range variables
+ thisval = new Vector() //for reading range variables
+thismorph = -1
+thisbiophys =  -1
+thisexp =  -1
+accuracy = 0
+cv = 1
+singlemorph = 0
+objref whichmorphology, whichbiophys, whichexp, pwmgraph
+whichmorphology = new Vector(5) 
+whichbiophys = new Vector(4)
+whichexp = new Vector(2)
+pwmgraph = new Vector(4)
+pwmgraph.fill(-1)
+
+// ***** Load standard libraries *****
+io = load_file("nrngui.hoc")
+io = nrn_load_dll("lib_mech/nrnmech.dll")
+io = xopen("lib_genroutines/fixnseg.hoc")
+io = xopen("lib_genroutines/genroutines.hoc")
+io = xopen("lib_genroutines/pasroutines.hoc")
+
+
+
+
+// ***** Procedures *****
+proc close_windows() {
+	for p = 0,pwmgraph.size()-1 {
+		if (pwmgraph.x(p) !=-1) {
+			PWManager[0].close(pwmgraph.x(p)-1)
+			pwmgraph.x(p) = -1
+			}
+	}
+	if (pwmrctrl !=-1) {
+		PWManager[0].close(pwmrctrl-1)
+		}
+	if (pwmexppanel !=-1) {
+		PWManager[0].close(pwmexppanel-1)
+		}
+	graphList[0].remove_all//(gind-1)
+}
+
+proc load_morphology() {
+	if ($1 && thismorph >= 0) {
+		if (whichmorphology.x(thismorph)==0) {  // do not allow unchecking
+			whichmorphology.x(thismorph) = 1  // recheck mark
+			return
+		}else{
+			whichmorphology.x(thismorph) = 0  // delete old check mark
+			}
+	}
+	
+	cellList.remove_all()  // destroy cell objects
+	
+	if ($1) {
+		if (PWManager[0].is_mapped(pwmbiophys-1) ){   // biophysics might have been defined... remove! But only if load_morphology was not called from load_biophys
+			whichbiophys.x(thisbiophys) = 0   // delete old check mark
+			thisbiophys = -1   // reinit biophys
+		}else{	PWManager[0].map(pwmbiophys-1)}
+	}
+	
+	if (PWManager[0].is_mapped(pwmexp-1)){
+		ppList.remove_all()  // destroy point process objects
+		PWManager[0].hide(pwmexp-1)
+		if (thisexp >= 0){
+			whichexp.x(thisexp) = 0   // delete old check mark
+			close_windows()
+			thisexp = -1   // reinit exp
+		}
+	}	
+	thismorph = whichmorphology.indwhere("==", 1)   // find (new) check mark now
+	
+	if (thismorph == 0) {
+		xopen("init_cells_SH07MouseGC.hoc")
+	}
+	if (thismorph == 1) {
+		xopen("init_cells_SynMouseGC.hoc")
+	}
+	if (thismorph == 2) {
+		xopen("init_cells_BeiningRatGC.hoc")
+	}
+	if (thismorph == 3) {
+		xopen("init_cells_SynRatGC.hoc")
+	}
+	if (thismorph == 4) {
+		xopen("init_cells_ClaiborneRatGC.hoc")
+	}
+	
+
+}
+
+
+proc load_biophys() {
+	if ($1 && thisbiophys >= 0){
+		if (whichbiophys.x(thisbiophys) ==0) {  // do not allow unchecking
+			whichbiophys.x(thisbiophys) = 1  // recheck mark
+			return
+		}else{
+			whichbiophys.x(thisbiophys) = 0   // delete old check mark
+		}
+	}
+	thisbiophys = whichbiophys.indwhere("==", 1)  // find new check mark
+	
+	// as there is no "uninsert all" function, the cells have to be reloaded to get rid of the inserted mechanisms. This is how I do it
+	load_morphology(0)  // clear and reload morphologies, thereby do not delete biophys windows
+	
+	if (thisbiophys == 0) {
+		xopen("init_mech_MatureMouseGC.hoc")
+		v_init = -92.100000
+		caname = "cai"
+	}
+	if (thisbiophys == 1) {
+		xopen("init_mech_YoungMouseGC.hoc")
+		v_init = -92.100000
+		caname = "cai"
+	}
+	if (thisbiophys == 2) {
+		xopen("init_mech_MatureRatGC.hoc")
+		v_init = -92.100000
+		caname = "cai"
+	}
+	if (thisbiophys == 3) {
+		xopen("init_mech_AH99_MatureRatGC.hoc")
+		v_init = -70.000000
+		caname = "caim_Caold"
+	}
+	if (thisbiophys >= 0) {
+		PWManager[0].map(pwmexp-1)
+	}
+}
+
+
+proc load_exp() {
+	if (thisexp >= 0){
+		if (whichexp.x(thisexp) ==0) {  // do not allow unchecking
+			whichexp.x(thisexp) = 1  // recheck mark
+			return
+		}else{
+			whichexp.x(thisexp) = 0   // delete old check mark
+			close_windows()
+			}
+	}
+	thisexp = whichexp.indwhere("==", 1)  // find new check mark
+
+	if (thisexp == 0) {
+		io = xopen("init_exp_curr.hoc")
+		print "Current injection experiment loaded"
+	}
+	if (thisexp == 1) {
+		io = xopen("init_exp_bAP.hoc")
+		print "bAP experiment loaded"
+	}
+}
+
+proc setcvode() {
+	cvode.active(cv)
+}
+
+// ***** Some settings *****
+celsius = 24
+prerun = 400
+tstart = 0
+tstop = 200
+dt = 0.05
+setcvode()
+
+io = xpanel("Load Morphologies")
+io = xlabel("Load Morphologies")
+io = xstatebutton("Load only single morphology",&singlemorph,"load_biophys(0)")
+io = xstatebutton("SH07 mouse GCs",&whichmorphology.x(0),"load_morphology(1)")
+io = xstatebutton("Synthetic mouse GCs",&whichmorphology.x(1),"load_morphology(1)")
+io = xstatebutton("Beining rat GCs",&whichmorphology.x(2),"load_morphology(1)")
+io = xstatebutton("Synthetic rat GCs",&whichmorphology.x(3),"load_morphology(1)")
+io = xstatebutton("Claiborne rat GCs",&whichmorphology.x(4),"load_morphology(1)")
+io = xpanel(0,150)
+pwmmorph = PWManager[0].count
+
+io = xpanel("Load Biophysics")
+io = xlabel("Load Biophysics")
+io = xstatebutton("mature mouse GC",&whichbiophys.x(0),"load_biophys(1)")
+io = xstatebutton("young mouse GC",&whichbiophys.x(1),"load_biophys(1)")
+io = xstatebutton("mature rat GC",&whichbiophys.x(2),"load_biophys(1)")
+io = xstatebutton("mature rat GC (Aradi&Holmes99)",&whichbiophys.x(3),"load_biophys(1)")
+io = xpanel(0,450)
+pwmbiophys = PWManager[0].count
+io = PWManager[0].hide(pwmbiophys-1)
+
+io = xpanel("Load Experiment")
+io = xlabel("Load Experiment")
+io = xstatebutton("Current injection",&whichexp.x(0),"load_exp()")
+io = xstatebutton("bAP",&whichexp.x(1),"load_exp()")
+io = xpanel(0,700)
+pwmexp = PWManager[0].count
+io = PWManager[0].hide(pwmexp-1)

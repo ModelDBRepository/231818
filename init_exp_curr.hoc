@@ -1,0 +1,64 @@
+
+amp = 0.05
+del = 50
+dur = 100
+
+// ***** Place synapses, electrodes or other point processes *****
+for CELLINDEX = 0,cellList.count-1 {
+	cellList.o(CELLINDEX).soma[0] {
+		pp = new IClamp(0.500000)
+		pp.amp = amp
+		pp.del = del
+		pp.dur = dur
+	}
+	io = ppList.append(pp)
+	objref pp
+}
+
+proc updateIClamp() {
+	for p = 0,ppList.count-1 {
+		ppList.o[p].amp = amp
+		ppList.o[p].del = del
+		ppList.o[p].dur = dur
+	}
+}
+
+io = xpanel("Current injection")
+io = xvalue("Amplitude","amp", 1,"updateIClamp()", 1, 1 )
+io = xvalue("Delay","del", 1 ,"updateIClamp()", 1, 1 )
+io = xvalue("Duration","dur", 1 ,"updateIClamp()", 1, 1 )
+io = xpanel(250,650)
+pwmexppanel = PWManager[0].count
+
+{
+io = xpanel("RunControl")
+io = xvalue("Init","v_init", 1,"init()", 1, 1 )
+io = xbutton("Init & Run","{init() run()}")
+io = xbutton("Stop","stoprun=1")
+io = xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )
+io = xvalue("Continue for","runStopIn", 1,"{continuerun(t + runStopIn) stoprun=1}", 1, 1 )
+io = xbutton("Single Step","steprun()")
+io = xvalue("t","t", 2 )
+io = xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+io = xvalue("dt","dt", 1,"setdt()" )
+io = xstatebutton("Variable dt",&cv ,"setcvode()")
+io = xvalue("Points plotted/ms","steps_per_ms", 1,"setdt()", 0, 1 )
+io = xvalue("Real Time","realtime", 0,"", 0, 1 )
+io = xpanel(250,150)
+}
+pwmrctrl = PWManager[0].count
+
+{
+g = new Graph(0)
+g.size(0,1000,-80,40)
+{g.view(0, -80, tstop, 120, 600, 150, 300, 200)}
+graphList[0].append(g)
+gind = graphList[0].count
+
+for CELLINDEX = 0,cellList.count-1 {
+	sprint(tmpstr,"cellList.o[%d].soma[0].v(.5)",CELLINDEX)
+	sprint(tmpstr2,"Cell%d: v at soma [mV]",CELLINDEX)
+	g.addexpr(tmpstr2,tmpstr, CELLINDEX%9+1,CELLINDEX/9+1)  // avoid white color
+	}
+}
+pwmgraph.x(0) = PWManager[0].count
